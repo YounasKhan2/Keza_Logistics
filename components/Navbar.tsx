@@ -54,17 +54,17 @@ export default function Navbar() {
               <div className="hidden lg:block">
                 <button className="bg-blue-800 hover:bg-blue-950 text-gray-200 px-4 py-2 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold">Get a Quote</button>
               </div>
+        
+              </div>
 
-              {/* Hamburger Menu Button */}
+              {/* Hamburger/Close Menu Button - Fixed Position */}
               <button 
                 onClick={toggleMenu}
-                className="lg:hidden text-white text-3xl z-index: 60 hover:scale-110 transition-transform duration-300 relative"
+                className="lg:hidden fixed top-8 right-6 text-white text-3xl z-60 hover:scale-110 transition-transform duration-300"
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? <HiX /> : <HiMenuAlt3 />}
               </button>
-        
-              </div>
 
               {/* Mobile Menu */}
               <div className={`fixed top-0 right-0 h-screen w-64 bg-blue-950 backdrop-blur-lg transform transition-transform duration-300 ease-in-out z-[55] lg:hidden ${

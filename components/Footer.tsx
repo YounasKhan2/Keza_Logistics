@@ -22,9 +22,9 @@ export default function Footer() {
                     <div>
                         <h4 className="font-semibold tracking-wider uppercase text-gray-300">Contact Info</h4>
                         <ul className="mt-4 space-y-3">
-                            <li className="text-sm text-gray-400">123 Industrial Parkway, Des Moines, IA 50309</li>
+                            <li className="text-sm text-gray-400">4030 30th St, Des Moines, IA US 50310</li>
                             <li className="text-sm text-gray-400">(515) 555-0123</li>
-                            <li className="text-sm text-gray-400">dispatch@americantrucking.com</li>
+                            <li className="text-sm text-gray-400">kizalogistics.com</li>
                         </ul>
                     </div>
                     <div className="bg-dark-blue p-8">

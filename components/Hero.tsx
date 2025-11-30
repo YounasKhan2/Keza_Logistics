@@ -2,7 +2,7 @@ import React from "react";
 
 export default function HeroSection() {
 return (
-<section className="relative h-screen min-h-[600px] w-full pt-0 ">
+<section id="home" className="relative h-screen min-h-[600px] w-full pt-0 ">
     <div className="absolute inset-0 bg-cover bg-center" data-alt="A modern semi-truck on an open highway under a dramatic sky, representing reliability and strength." style={{ backgroundImage: "url('/images/Heroimage.jpg')" }} />
     <div className="absolute inset-0 bg-black/60"></div>
     <div className="relative h-full flex flex-col items-center justify-center text-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Enhanced smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed navbar */
+}
+
+/* Custom smooth scroll animation for large screens */
+@media (min-width: 1024px) {
+  html {
+    scroll-behavior: auto; /* Disable default for custom JS control */
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

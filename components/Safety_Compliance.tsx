@@ -3,7 +3,7 @@ import { MdHealthAndSafety, MdVerifiedUser } from "react-icons/md";
 
 export default function safetyCompliance() {
     return (
-        <section className="py-20 sm:py-28 bg-black text-white">
+        <section id="safety" className="py-20 sm:py-28 bg-black text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-black uppercase tracking-wider">Safety &amp; Compliance: Our #1 Priority</h2>

@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "./Logo";
 
 export default function Navbar() {
     return (
@@ -6,7 +7,7 @@ export default function Navbar() {
               <div className="fixed top-0 left-0 right-0 z-50 py-8 text-white flex justify-between px-10 bg-transparent backdrop-blur-sm">
               
               <div>
-                <h1 className="text-3xl font-bold">Trucking Website</h1>
+                <Logo />
               </div>
               
               <div>

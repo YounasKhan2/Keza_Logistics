@@ -46,13 +46,13 @@ export default function Navbar() {
                   <li className="hover:underline underline-offset-8 hover:transform hover:scale-105 transition-all duration-300"><a href="#services" onClick={(e) => handleSmoothScroll(e, '#services')}>Services</a></li>
                   <li className="hover:underline underline-offset-8 hover:transform hover:scale-105 transition-all duration-300"><a href="#fleet" onClick={(e) => handleSmoothScroll(e, '#fleet')}>Fleet</a></li>
                   <li className="hover:underline underline-offset-8 hover:transform hover:scale-105 transition-all duration-300"><a href="#about" onClick={(e) => handleSmoothScroll(e, '#about')}>About</a></li>
-                  <li className="hover:underline underline-offset-8 hover:transform hover:scale-105 transition-all duration-300"><a href="#safety" onClick={(e) => handleSmoothScroll(e, '#safety')}>Safety</a></li>
+                  <li className="hover:underline underline-offset-8 hover:transform hover:scale-105 transition-all duration-300"><a href="#contact" onClick={(e) => handleSmoothScroll(e, '#contact')}>Contact</a></li>
                 </ul>
               </div>
               
               {/* Desktop CTA Button */}
               <div className="hidden lg:block">
-                <button className="bg-blue-800 hover:bg-blue-950 text-gray-200 px-4 py-2 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold">Get a Quote</button>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold" onClick={(e) => { const event = e as any; handleSmoothScroll(event, '#contact'); }}>Get a Quote</button>
               </div>
         
               </div>
@@ -72,14 +72,14 @@ export default function Navbar() {
               }`}>
                 <div className="flex flex-col pt-24 px-8 gap-6">
                   <ul className="flex flex-col gap-6 text-lg font-semibold text-white">
-                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer" onClick={toggleMenu}><a href="#home">Home</a></li>
-                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer" onClick={toggleMenu}><a href="#services">Services</a></li>
-                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer" onClick={toggleMenu}><a href="#fleet">Fleet</a></li>
-                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer" onClick={toggleMenu}><a href="#about">About</a></li>
-                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer" onClick={toggleMenu}><a href="#safety">Safety</a></li>
+                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer"><a href="#home" onClick={(e) => handleMobileScroll(e, '#home')}>Home</a></li>
+                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer"><a href="#services" onClick={(e) => handleMobileScroll(e, '#services')}>Services</a></li>
+                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer"><a href="#fleet" onClick={(e) => handleMobileScroll(e, '#fleet')}>Fleet</a></li>
+                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer"><a href="#about" onClick={(e) => handleMobileScroll(e, '#about')}>About</a></li>
+                    <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer"><a href="#contact" onClick={(e) => handleMobileScroll(e, '#contact')}>Contact</a></li>
                   </ul>
                   
-                  <button className="bg-white text-blue-950 px-4 py-3 rounded-md hover:transform hover:scale-105 transition-all duration-300 mt-4 font-semibold" onClick={toggleMenu}>
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-md hover:transform hover:scale-105 transition-all duration-300 mt-4 font-semibold" onClick={(e) => { const event = e as any; handleMobileScroll(event, '#contact'); }}>
                     Get a Quote
                   </button>
                 </div>

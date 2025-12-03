@@ -1,6 +1,23 @@
+"use client";
+
 import React from "react";
 
 export default function Footer() {
+
+    const handleQuoteClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const contactSection = document.querySelector('#contact');
+        
+        if (contactSection) {
+            const offsetTop = contactSection.getBoundingClientRect().top + window.pageYOffset;
+            const navbarHeight = 80;
+            
+            window.scrollTo({
+                top: offsetTop - navbarHeight,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     return (
         <footer className="bg-brand-black text-white bg-black">
@@ -22,15 +39,20 @@ export default function Footer() {
                     <div>
                         <h4 className="font-semibold tracking-wider uppercase text-gray-300">Contact Info</h4>
                         <ul className="mt-4 space-y-3">
-                            <li className="text-sm text-gray-400">4030 30th St, Des Moines, IA US 50310</li>
-                            <li className="text-sm text-gray-400">(515) 555-0123</li>
-                            <li className="text-sm text-gray-400">kizalogistics.com</li>
+                            <li className="text-sm text-gray-400">4030 30TH ST DES MOINES, IA   50310 </li>
+                            <li className="text-sm text-gray-400">(515) 608-3762  </li>
+                            <li className="text-sm text-gray-400">
+                                <a href="mailto:info@kezalogistics.com" className="hover:underline focus:outline-none focus:ring-2 focus:ring-accent-blue">
+                                    info@kezalogistics.com
+                                </a>
+                            </li>
+                             <li className="text-sm text-gray-400">MC # 1482550</li>
                         </ul>
                     </div>
                     <div className="bg-dark-blue p-8">
                         <h4 className="font-semibold tracking-wider uppercase text-white">Request a Quote</h4>
                         <p className="text-sm text-gray-300 mt-4">Get a fast, free, no-obligation quote for your shipping needs today.</p>
-                        <a className="mt-4 w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden h-12 px-4 bg-accent-blue text-white text-sm font-bold uppercase tracking-wide hover:bg-blue-500 transition-colors" href="#">
+                        <a className="mt-4 w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden h-12 px-4 bg-blue-600 text-white text-sm font-bold uppercase tracking-wide hover:bg-blue-700 transition-colors rounded-md" href="#contact" onClick={handleQuoteClick}>
                             <span className="truncate">Get My Quote</span>
                         </a>
                     </div>

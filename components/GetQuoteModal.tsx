@@ -24,8 +24,6 @@ export default function GetQuoteModal({ open, onClose }: Props) {
     setStatus('idle')
     setErrorText('')
 
-    console.log('[GetQuoteModal] handleSubmit', { name, email, phone, message })
-
     try {
       const res = await fetch('/api/send-quote', {
         method: 'POST',
@@ -33,13 +31,11 @@ export default function GetQuoteModal({ open, onClose }: Props) {
         body: JSON.stringify({ name, email, phone, message }),
       })
 
-      console.log('[GetQuoteModal] fetch completed, status=', res.status)
       let data: any = null
       try {
         data = await res.json()
-        console.log('[GetQuoteModal] response json:', data)
       } catch (jsonErr) {
-        console.warn('[GetQuoteModal] failed to parse JSON response', jsonErr)
+        // ignore json parse errors; do not log sensitive response content
       }
 
       if (!res.ok) {
@@ -53,7 +49,8 @@ export default function GetQuoteModal({ open, onClose }: Props) {
         setMessage('')
       }
     } catch (err: any) {
-      console.error('[GetQuoteModal] fetch error', err)
+      // Log only non-sensitive error information
+      console.error('[GetQuoteModal] fetch error', err?.message || err)
       setStatus('error')
       setErrorText(err?.message || 'Network error')
     } finally {

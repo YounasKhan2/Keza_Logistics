@@ -3,11 +3,9 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import GetQuoteModal from './GetQuoteModal'
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -54,7 +52,7 @@ export default function Navbar() {
               
               {/* Desktop CTA Button */}
               <div className="hidden lg:block">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold" onClick={() => setIsQuoteOpen(true)}>Get a Quote</button>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold" onClick={(e) => handleSmoothScroll(e as any, '#contact')}>Get a Quote</button>
               </div>
         
               </div>
@@ -81,7 +79,7 @@ export default function Navbar() {
                     <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer"><a href="#contact" onClick={(e) => handleMobileScroll(e, '#contact')}>Contact</a></li>
                   </ul>
                   
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-md hover:transform hover:scale-105 transition-all duration-300 mt-4 font-semibold" onClick={() => { setIsQuoteOpen(true); setIsMenuOpen(false); }}>
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-md hover:transform hover:scale-105 transition-all duration-300 mt-4 font-semibold" onClick={(e) => { handleMobileScroll(e as any, '#contact'); }}>
                     Get a Quote
                   </button>
                 </div>
@@ -94,8 +92,7 @@ export default function Navbar() {
                   onClick={toggleMenu}
                 ></div>
               )}
-              {/* Get Quote Modal (client) */}
-              <GetQuoteModal open={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
+              {/* Note: Get Quote navigates to the contact section on the page */}
             </div>
             
             

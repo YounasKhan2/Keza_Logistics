@@ -12,8 +12,7 @@ const resend = new Resend(resendApiKey || '')
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    // Debug: log incoming request body to server console (will appear in your dev terminal)
-    console.log('[api/send-quote] incoming body:', body)
+    // Do NOT log request body or any sensitive user input to logs in production
     const { name, email, phone, message } = body || {}
 
     if (!email || !message) {

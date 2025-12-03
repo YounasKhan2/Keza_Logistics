@@ -140,7 +140,7 @@ export default function ContactSection() {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="bg-blue-600 text-white px-12 py-4 rounded-md font-bold uppercase tracking-wider hover:bg-blue-700 transition-colors shadow-lg hover:scale-105 transform duration-300"
+                            className="bg-blue-600 text-white px-12 py-4 uppercase tracking-wider hover:bg-blue-700 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold"
                         >
                             Submit Quote Request
                         </button>

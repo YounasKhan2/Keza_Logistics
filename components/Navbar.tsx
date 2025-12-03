@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import GetQuoteModal from './GetQuoteModal'
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -52,7 +54,7 @@ export default function Navbar() {
               
               {/* Desktop CTA Button */}
               <div className="hidden lg:block">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold" onClick={(e) => { const event = e as any; handleSmoothScroll(event, '#contact'); }}>Get a Quote</button>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold" onClick={() => setIsQuoteOpen(true)}>Get a Quote</button>
               </div>
         
               </div>
@@ -67,7 +69,7 @@ export default function Navbar() {
               </button>
 
               {/* Mobile Menu */}
-              <div className={`fixed top-0 right-0 h-screen w-64 bg-blue-950 backdrop-blur-lg transform transition-transform duration-300 ease-in-out z-[55] lg:hidden ${
+              <div className={`fixed top-0 right-0 h-screen w-64 bg-blue-950 backdrop-blur-lg transform transition-transform duration-300 ease-in-out z-55 lg:hidden ${
                 isMenuOpen ? 'translate-x-0' : 'translate-x-full'
               }`}>
                 <div className="flex flex-col pt-24 px-8 gap-6">
@@ -79,7 +81,7 @@ export default function Navbar() {
                     <li className="hover:underline underline-offset-8 hover:transform hover:translate-x-2 transition-all duration-300 cursor-pointer"><a href="#contact" onClick={(e) => handleMobileScroll(e, '#contact')}>Contact</a></li>
                   </ul>
                   
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-md hover:transform hover:scale-105 transition-all duration-300 mt-4 font-semibold" onClick={(e) => { const event = e as any; handleMobileScroll(event, '#contact'); }}>
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-md hover:transform hover:scale-105 transition-all duration-300 mt-4 font-semibold" onClick={() => { setIsQuoteOpen(true); setIsMenuOpen(false); }}>
                     Get a Quote
                   </button>
                 </div>
@@ -88,10 +90,12 @@ export default function Navbar() {
               {/* Overlay */}
               {isMenuOpen && (
                 <div 
-                  className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[45] lg:hidden"
+                  className="fixed inset-0 bg-black/50 backdrop-blur-sm z-45 lg:hidden"
                   onClick={toggleMenu}
                 ></div>
               )}
+              {/* Get Quote Modal (client) */}
+              <GetQuoteModal open={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
             </div>
             
             

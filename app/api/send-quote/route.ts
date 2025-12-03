@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import Resend from 'resend'
+import { Resend } from 'resend'
 
 const resendApiKey = process.env.RESEND_API_KEY;
 if (!resendApiKey) {
@@ -12,6 +12,8 @@ const resend = new Resend(resendApiKey || '')
 export async function POST(req: Request) {
   try {
     const body = await req.json()
+    // Debug: log incoming request body to server console (will appear in your dev terminal)
+    console.log('[api/send-quote] incoming body:', body)
     const { name, email, phone, message } = body || {}
 
     if (!email || !message) {

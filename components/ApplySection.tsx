@@ -11,6 +11,9 @@ export default function ContactSection() {
         serviceType: "",
         message: ""
     });
+    const [loading, setLoading] = useState(false)
+    const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+    const [errorText, setErrorText] = useState('')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({
@@ -19,10 +22,39 @@ export default function ContactSection() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
-        console.log(formData);
+        setLoading(true)
+        setStatus('idle')
+        setErrorText('')
+
+        // simple honeypot check (if you add a hidden field named `hp`)
+        // if ((formData as any).hp) return setStatus('error')
+
+        try {
+            const res = await fetch('/api/send-quote', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            })
+
+            let data = null
+            try { data = await res.json() } catch (err) { /* ignore parse errors */ }
+
+            if (!res.ok) {
+                setStatus('error')
+                setErrorText(data?.error || `Failed to send (status ${res.status})`)
+            } else {
+                setStatus('success')
+                setFormData({ name: '', email: '', phone: '', company: '', serviceType: '', message: '' })
+            }
+        } catch (err: any) {
+            console.error('[ApplySection] submit error', err?.message || err)
+            setStatus('error')
+            setErrorText(err?.message || 'Network error')
+        } finally {
+            setLoading(false)
+        }
     };
 
     return (
@@ -34,6 +66,12 @@ export default function ContactSection() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8 space-y-6">
+                    {status === 'success' && (
+                        <div className="p-3 mb-2 text-green-800 bg-green-100 rounded">Your request was sent — we will contact you soon.</div>
+                    )}
+                    {status === 'error' && (
+                        <div className="p-3 mb-2 text-red-800 bg-red-100 rounded">{errorText || 'Failed to send request. Please try again.'}</div>
+                    )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label htmlFor="name" className="block text-sm font-semibold text-blue-950 mb-2">
@@ -140,9 +178,10 @@ export default function ContactSection() {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="bg-blue-600 text-white px-12 py-4 uppercase tracking-wider hover:bg-blue-700 rounded-md hover:cursor-pointer hover:transform hover:scale-105 transition-all duration-300 font-semibold"
+                            disabled={loading}
+                            className={`bg-blue-600 text-white px-12 py-4 uppercase tracking-wider rounded-md transition-all duration-300 font-semibold ${loading ? 'opacity-60 cursor-wait' : 'hover:bg-blue-700 hover:cursor-pointer hover:transform hover:scale-105'}`}
                         >
-                            Submit Quote Request
+                            {loading ? 'Sending...' : 'Submit Quote Request'}
                         </button>
                     </div>
                 </form>
